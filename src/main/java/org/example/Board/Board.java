@@ -22,6 +22,15 @@ public class Board {
         return board;
     }
 
+    public void moveFigure(int[][] from, int[][] to) {
+    }
+
+    public boolean hasFigure(int[] YX) {
+        int y = YX[0];
+        int x = YX[1];
+        return board[y][x] != null;
+    }
+
     public void setBoard(Object[][] board) {
         this.board = board;
     }

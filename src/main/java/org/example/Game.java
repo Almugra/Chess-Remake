@@ -1,11 +1,16 @@
 package org.example;
 
 import org.example.Board.Board;
-import org.example.Board.BoardBuilder;
+import org.example.Board.BoardPrinter;
+import org.example.Player.Players;
 
 public class Game {
+    Board board = new Board();
+    Players players = new Players();
+    BoardPrinter printer = new BoardPrinter(board, players);
+
     public void playGame() {
-        BoardBuilder builder = new BoardBuilder(new Board());
-        System.out.println(builder.buildLowerCaseBoard());
+        printer.printBoard();
+        board.moveFigure();
     }
 }

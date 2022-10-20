@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="added canMove function for rook and queen">
+    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="added input and player classes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/CheckBetween.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/EnPassant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +22,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -44,6 +47,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
     "last_opened_file_path": "C:/Users/MC/IdeaProjects/Chess-Remake"
   }
 }]]></component>
@@ -56,13 +60,26 @@
       <recent name="org.example.Input" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BoardBuilder">
+  <component name="RunManager" selected="Application.GameApplication">
     <configuration name="BoardBuilder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Board.BoardBuilder" />
       <module name="Chess-Remake" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.Board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.GameApplication" />
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,22 +117,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KnightTest.knightCanMoveLikeAKnight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chess-Remake" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.Figures.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.Figures" />
-      <option name="MAIN_CLASS_NAME" value="org.example.Figures.KnightTest" />
-      <option name="METHOD_NAME" value="knightCanMoveLikeAKnight" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RookTest.rookCantMoveDiagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chess-Remake" />
       <extension name="coverage">
@@ -134,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GameApplication" />
         <item itemvalue="Application.BoardBuilder" />
         <item itemvalue="JUnit.RookTest.rookCantMoveDiagonal" />
         <item itemvalue="JUnit.KingTest" />
         <item itemvalue="JUnit.KnightTest" />
-        <item itemvalue="JUnit.KnightTest.knightCanMoveLikeAKnight" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +153,9 @@
       <updated>1666212417012</updated>
       <workItem from="1666212418813" duration="3035000" />
       <workItem from="1666257179149" duration="9304000" />
-      <workItem from="1666271075915" duration="3342000" />
+      <workItem from="1666271075915" duration="3465000" />
+      <workItem from="1666293381652" duration="4647000" />
+      <workItem from="1666305444274" duration="2249000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1666212532265</created>
@@ -189,7 +192,35 @@
       <option name="project" value="LOCAL" />
       <updated>1666266570578</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added BoardBuilder">
+      <created>1666274538809</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666274538809</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactored boardbuilder">
+      <created>1666294596880</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666294596880</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactored boardBuilder">
+      <created>1666294640933</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666294640933</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added input and player classes">
+      <created>1666297176113</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666297176113</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +243,10 @@
     <MESSAGE value="added King functionality" />
     <MESSAGE value="added Knight canMove" />
     <MESSAGE value="added canMove function for rook and queen" />
-    <option name="LAST_COMMIT_MESSAGE" value="added canMove function for rook and queen" />
+    <MESSAGE value="added BoardBuilder" />
+    <MESSAGE value="refactored boardbuilder" />
+    <MESSAGE value="refactored boardBuilder" />
+    <MESSAGE value="added input and player classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added input and player classes" />
   </component>
 </project>
