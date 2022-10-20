@@ -4,14 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="" />
+    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="Start">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardPrinter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Figure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Input/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Input/InputParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Player/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Player/Players.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Symbols/Lowercase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Symbols/Uppercase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/BishopTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/KingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Input/InputParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GameApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2GMxmZVvaMj92aP0r5soUziVf9A" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -23,9 +62,91 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/MC/IdeaProjects/Chess"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.example.Figures" />
+      <recent name="org.example.Input" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BishopTest.bishopDoesntMoveDiagonal">
+    <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Board.Board" />
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BishopTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Figures.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.Figures" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Figures.BishopTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BishopTest.bishopDoesntMoveDiagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Figures.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.Figures" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Figures.BishopTest" />
+      <option name="METHOD_NAME" value="bishopDoesntMoveDiagonal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InputParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Input.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.Input" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Input.InputParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BishopTest.bishopDoesntMoveDiagonal" />
+        <item itemvalue="JUnit.BishopTest" />
+        <item itemvalue="JUnit.InputParserTest" />
+        <item itemvalue="Application.Board" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -34,8 +155,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666212417012</updated>
+      <workItem from="1666212418813" duration="3035000" />
+      <workItem from="1666257179149" duration="5147000" />
     </task>
+    <task id="LOCAL-00001" summary="Start">
+      <created>1666212532265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666212532265</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -47,5 +181,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Start" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start" />
   </component>
 </project>
