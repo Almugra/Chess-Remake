@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="added King functionality">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/KnightTest.java" afterDir="false" />
+    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="added Knight canMove">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/PawnTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/RookTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/Figures/BishopTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/BishopTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/Figures/KnightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/KnightTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +61,7 @@
       <recent name="org.example.Input" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.KnightTest">
+  <component name="RunManager" selected="JUnit.RookTest.rookCantMoveDiagonal">
     <configuration name="BishopTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chess-Remake" />
       <extension name="coverage">
@@ -71,22 +73,6 @@
       <option name="PACKAGE_NAME" value="org.example.Figures" />
       <option name="MAIN_CLASS_NAME" value="org.example.Figures.BishopTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BishopTest.bishopDoesntMoveDiagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chess-Remake" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.Figures.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.Figures" />
-      <option name="MAIN_CLASS_NAME" value="org.example.Figures.BishopTest" />
-      <option name="METHOD_NAME" value="bishopDoesntMoveDiagonal" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,13 +123,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RookTest.rookCantMoveDiagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Figures.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.Figures" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Figures.RookTest" />
+      <option name="METHOD_NAME" value="rookCantMoveDiagonal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RookTest.rookCantMoveDiagonal" />
+        <item itemvalue="JUnit.KingTest" />
         <item itemvalue="JUnit.KnightTest" />
         <item itemvalue="JUnit.KnightTest.knightCanMoveLikeAKnight" />
         <item itemvalue="JUnit.BishopTest" />
-        <item itemvalue="JUnit.KingTest" />
-        <item itemvalue="JUnit.BishopTest.bishopDoesntMoveDiagonal" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +158,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666212417012</updated>
       <workItem from="1666212418813" duration="3035000" />
-      <workItem from="1666257179149" duration="7235000" />
+      <workItem from="1666257179149" duration="9225000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1666212532265</created>
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666263078683</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added Knight canMove">
+      <created>1666264459787</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666264459787</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +209,7 @@
     <MESSAGE value="Start" />
     <MESSAGE value="added basic structure, bishop test, bishop functionality, input and InputParser" />
     <MESSAGE value="added King functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="added King functionality" />
+    <MESSAGE value="added Knight canMove" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Knight canMove" />
   </component>
 </project>

@@ -18,6 +18,7 @@ public class Pawn implements Figure {
     public boolean isLowercase() {
         return symbol instanceof Lowercase;
     }
+
     @Override
     public String toString() {
         return symbol.toString();
