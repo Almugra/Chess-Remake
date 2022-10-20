@@ -6,9 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.example.Symbols.Uppercase.B;
-import static org.example.Symbols.Uppercase.UPPERCASE;
-import static org.junit.jupiter.api.Assertions.*;
 
 class KingTest {
     King underTestClass;
@@ -20,6 +17,10 @@ class KingTest {
 
     @Test
     void kingCantMoveTwoPositions() {
+        int[] start = {3, 3};
+        int[] end = {1, 5};
+        boolean actual = underTestClass.canMove(start, end);
+        assertThat(actual).isFalse();
     }
 
     @AfterEach

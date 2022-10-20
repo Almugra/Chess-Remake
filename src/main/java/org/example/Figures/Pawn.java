@@ -24,7 +24,7 @@ public class Pawn implements Figure {
     }
 
     @Override
-    public boolean canMove(int[] startXY, int[] goalXY) {
+    public boolean canMove(int[] startYX, int[] endYX) {
         return false;
     }
 }

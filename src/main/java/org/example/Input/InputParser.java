@@ -3,8 +3,8 @@ package org.example.Input;
 public class InputParser {
 
     public int[] inputToCoordinates(String input) {
-        char[] xy = input.toCharArray();
-        return new int[]{charToInt(xy[0]), charToInt(xy[1])};
+        char[] yx = input.toCharArray();
+        return new int[]{charToInt(yx[0]), charToInt(yx[1])};
     }
 
     public int charToInt(char c) {

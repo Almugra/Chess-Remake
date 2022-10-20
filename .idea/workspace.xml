@@ -4,32 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="Start">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Board/BoardPrinter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Figure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Input/Input.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Input/InputParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Player/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Player/Players.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Symbols/Lowercase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Symbols/Uppercase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/BishopTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/KingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Input/InputParserTest.java" afterDir="false" />
+    <list default="true" id="5a4e702e-c1ad-4a58-9aad-6745b70045b7" name="Changes" comment="added basic structure, bishop test, bishop functionality, input and InputParser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Figure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Figure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Figures/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Input/InputParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Input/InputParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/Figures/KingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/Figures/KingTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +63,7 @@
       <recent name="org.example.Input" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BishopTest.bishopDoesntMoveDiagonal">
+  <component name="RunManager" selected="JUnit.KingTest">
     <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Board.Board" />
       <module name="Chess-Remake" />
@@ -138,8 +123,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chess-Remake" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.Figures.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.Figures" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Figures.KingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.KingTest" />
         <item itemvalue="JUnit.BishopTest.bishopDoesntMoveDiagonal" />
         <item itemvalue="JUnit.BishopTest" />
         <item itemvalue="JUnit.InputParserTest" />
@@ -156,7 +157,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666212417012</updated>
       <workItem from="1666212418813" duration="3035000" />
-      <workItem from="1666257179149" duration="5147000" />
+      <workItem from="1666257179149" duration="5876000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1666212532265</created>
@@ -165,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666212532265</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added basic structure, bishop test, bishop functionality, input and InputParser">
+      <created>1666262432666</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666262432666</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +192,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start" />
+    <MESSAGE value="added basic structure, bishop test, bishop functionality, input and InputParser" />
+    <option name="LAST_COMMIT_MESSAGE" value="added basic structure, bishop test, bishop functionality, input and InputParser" />
   </component>
 </project>

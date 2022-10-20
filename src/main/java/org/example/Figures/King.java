@@ -24,7 +24,11 @@ public class King implements Figure{
     }
 
     @Override
-    public boolean canMove(int[] startXY, int[] endXY) {
+    public boolean canMove(int[] startYX, int[] endYX) {
+        boolean movesTwo = Math.abs(startYX[0] - endYX[0]) >= 2 || Math.abs(startYX[1] - endYX[1]) >= 2;
+        if (movesTwo) {
+            return false;
+        }
         return true;
     }
 
