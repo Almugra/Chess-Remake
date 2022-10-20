@@ -2,16 +2,15 @@ package org.example.Board;
 
 import org.example.Figures.*;
 
-import java.util.Arrays;
-
 import static org.example.Symbols.Lowercase.*;
 import static org.example.Symbols.Uppercase.*;
 
 public class Board {
 
-    Object[][] board = {
+    private Object[][] board = {
             {new Rook(R), new Knight(N), new Bishop(B), new Queen(Q), new King(K), new Bishop(B), new Knight(N), new Rook(R)},
             {new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P)},
+            {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
@@ -19,9 +18,20 @@ public class Board {
             {new Rook(r), new Knight(n), new Bishop(b), new Queen(q), new King(k), new Bishop(b), new Knight(n), new Rook(r)}
     };
 
-    public static void main(String[] args) {
-        Board b = new Board();
-        System.out.println(Arrays.deepToString(b.board));
+    public Object[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(Object[][] board) {
+        this.board = board;
+    }
+
+    public void removeFigure(int[] YX) {
+        board[YX[0]][YX[1]] = null;
+    }
+
+    public void setFigure(int[] YX, Figure figure) {
+        board[YX[0]][YX[1]] = null;
     }
 
 }
