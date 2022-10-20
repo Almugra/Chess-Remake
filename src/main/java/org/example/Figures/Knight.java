@@ -25,7 +25,10 @@ public class Knight implements Figure{
 
     @Override
     public boolean canMove(int[] startYX, int[] endYX) {
-        return false;
+        boolean movesStraight = startYX[1] == endYX[1] || startYX[0] == endYX[0];
+        boolean yTwoXOne = Math.abs(startYX[1] - endYX[1]) == 2 && Math.abs(startYX[0] - endYX[0]) == 1;
+        boolean yOneXTwo = Math.abs(startYX[1] - endYX[1]) == 1 && Math.abs(startYX[0] - endYX[0]) == 2;
+        return !movesStraight && (!yOneXTwo || !yTwoXOne);
     }
 
 }

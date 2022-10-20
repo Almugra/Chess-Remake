@@ -1,23 +1,24 @@
 package org.example.Figures;
 
+import org.example.Symbols.Uppercase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.example.Symbols.Uppercase.B;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
-class BishopTest {
+class KnightTest {
 
-    Bishop underTestClass;
+    Knight underTestClass;
 
     @BeforeEach
     void setUp() {
-        underTestClass = new Bishop(B);
+        underTestClass = new Knight(Uppercase.N);
     }
 
     @Test
-    void bishopCantMoveHorizontal() {
+    void knightCantMoveHorizontal() {
         int[] start = {3, 3};
         int[] end = {5, 3};
         boolean actual = underTestClass.canMove(start, end);
@@ -25,7 +26,7 @@ class BishopTest {
     }
 
     @Test
-    void bishopCantMoveVertical() {
+    void knightCantMoveVertical() {
         int[] start = {3, 3};
         int[] end = {3, 5};
         boolean actual = underTestClass.canMove(start, end);
@@ -33,11 +34,11 @@ class BishopTest {
     }
 
     @Test
-    void bishopCantMoveInSquiggle() {
+    void knightCanMoveLikeAKnight() {
         int[] start = {3, 3};
-        int[] end = {5, 2};
+        int[] end = {2, 5};
         boolean actual = underTestClass.canMove(start, end);
-        assertThat(actual).isFalse();
+        assertThat(actual).isTrue();
     }
 
     @AfterEach
