@@ -24,6 +24,13 @@ class RookTest {
         assertThat(actual).isFalse();
     }
 
+    @Test
+    void rookCanMoveStraightUp() {
+        int[] start = {7, 0};
+        int[] end = {5, 0};
+        boolean actual = underTestClass.canMove(start, end);
+        assertThat(actual).isTrue();
+    }
     @AfterEach
     void tearDown() {
         underTestClass = null;
