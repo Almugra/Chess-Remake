@@ -10,12 +10,12 @@ public class Board {
 
     private Object[][] board = {
             {new Rook(R), new Knight(N), new Bishop(B), new Queen(Q), new King(K), new Bishop(B), new Knight(N), new Rook(R)},
-            {new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P)},
+            {new Pawn(P, this), new Pawn(P, this), new Pawn(P, this) , new Pawn(P, this) , new Pawn(P, this) , new Pawn(P, this) , new Pawn(P, this) , new Pawn(P, this)},
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
             {null, null, null, null, null, null, null, null},
-            {new Pawn(p), new Pawn(p), new Pawn(p), new Pawn(p), new Pawn(p), new Pawn(p), new Pawn(p), new Pawn(p)},
+            {new Pawn(p, this), new Pawn(p, this), new Pawn(p, this) , new Pawn(p, this) , new Pawn(p, this) , new Pawn(p, this) , new Pawn(p, this) , new Pawn(p, this)},
             {new Rook(r), new Knight(n), new Bishop(b), new Queen(q), new King(k), new Bishop(b), new Knight(n), new Rook(r)}
     };
 
@@ -65,8 +65,6 @@ public class Board {
         } else if (false) {
             System.out.println("Cant move King because that position is in check!");
             return false;
-        } else if (board[from[0]][from[1]] instanceof Rook) {
-
         }
         return true;
     }
@@ -77,6 +75,14 @@ public class Board {
         do {
             fromTo = input.requestInputs();
         } while (!canMove(fromTo, playerFigureType));
+        int[] from = fromTo[0];
+        int[] to = fromTo[1];
+        setFigure(to, getFigure(to));
+        removeFigure(from);
+    }
+
+    public Figure getFigure(int[] coordinates) {
+        return (Figure) board[coordinates[0]][coordinates[1]];
     }
 
     public boolean hasFigure(int[] YX) {

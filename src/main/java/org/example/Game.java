@@ -14,5 +14,7 @@ public class Game {
         Player currentPlayer = players.getCurrentPlayer();
         printer.printBoard();
         board.moveFigure(currentPlayer.getSymbol());
+        players.changeToNextPlayer();
+        printer.printBoard();
     }
 }
