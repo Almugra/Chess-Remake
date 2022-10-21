@@ -26,9 +26,8 @@ public class Bishop implements Figure {
 
     @Override
     public boolean canMove(int[] startYX, int[] endYX) {
-        boolean movesStraight = startYX[1] == endYX[1] || startYX[0] == endYX[0];
-        boolean movesSquiggled = Math.abs(startYX[0] - endYX[0]) != Math.abs(startYX[1] - endYX[1]);
-        return !movesStraight && !movesSquiggled;
+        boolean movesDiagonal = Math.abs(startYX[0] - endYX[0]) == Math.abs(startYX[1] - endYX[1]);
+        return movesDiagonal;
     }
 
 }

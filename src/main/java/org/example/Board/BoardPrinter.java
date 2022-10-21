@@ -20,6 +20,6 @@ public class BoardPrinter {
         } else {
             System.out.println(builder.buildLowerCaseBoard());
         }
-        System.out.printf("It's %s's turn!", players.getCurrentPlayer().getName());
+        System.out.printf("It's %s's turn!\n", players.getCurrentPlayer().getName());
     }
 }
