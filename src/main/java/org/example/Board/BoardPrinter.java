@@ -18,7 +18,7 @@ public class BoardPrinter {
         if (players.getCurrentPlayer().getSymbol().equals(LOWERCASE)) {
             System.out.println(builder.buildLowerCaseBoard());
         } else {
-            System.out.println(builder.buildLowerCaseBoard());
+            System.out.println(builder.buildUpperCaseBoard());
         }
         System.out.printf("It's %s's turn!\n", players.getCurrentPlayer().getName());
     }

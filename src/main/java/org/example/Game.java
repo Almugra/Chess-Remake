@@ -10,11 +10,16 @@ public class Game {
     Players players = new Players();
     BoardPrinter printer = new BoardPrinter(board, players);
 
-    public void playGame() {
+    public void playTurn() {
         Player currentPlayer = players.getCurrentPlayer();
         printer.printBoard();
         board.moveFigure(currentPlayer.getSymbol());
         players.changeToNextPlayer();
-        printer.printBoard();
+    }
+
+    public void playGame() {
+        while (true) {
+            playTurn();
+        }
     }
 }

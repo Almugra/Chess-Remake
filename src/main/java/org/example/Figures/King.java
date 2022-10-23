@@ -1,8 +1,10 @@
 package org.example.Figures;
 
+import org.example.Board.Between;
+import org.example.Board.Board;
 import org.example.Symbols.Lowercase;
 
-public class King implements Figure{
+public class King implements Figure {
 
     public Object symbol;
 
@@ -18,15 +20,38 @@ public class King implements Figure{
     public boolean isLowercase() {
         return symbol instanceof Lowercase;
     }
+
     @Override
     public String toString() {
         return symbol.toString();
     }
 
     @Override
-    public boolean canMove(int[] startYX, int[] endYX) {
-        boolean movesTwo = Math.abs(startYX[0] - endYX[0]) >= 2 || Math.abs(startYX[1] - endYX[1]) >= 2;
-        return !movesTwo;
+    public boolean canMove(int[] startYX, int[] endYX, Board board) {
+        boolean movesMoreThenOne = Math.abs(startYX[0] - endYX[0]) > 1 || Math.abs(startYX[1] - endYX[1]) > 1;
+        return !movesMoreThenOne;
+    }
+
+    @Override
+    public boolean isKingCheck(int[] from, int[] to, Board board) {
+        Between between;
+        Board newBoard = new Board();
+        newBoard.setBoard(board.getBoard());
+        newBoard.setFigure(to, this);
+        newBoard.removeFigure(from);
+        Object[][] b = newBoard.getBoard();
+        for (int y = 0; y <= 7; y++) {
+            for (int x = 0; x <= 7; x++) {
+                if (b[y][x] instanceof Figure && ((Figure) b[y][x]).getSymbol().getClass() != symbol.getClass()) {
+                    between = new Between(new int[]{y,x}, to, b);
+                    if (((Figure) b[y][x]).canMove(new int[]{y,x}, to, newBoard) && !between.isFigureInBetween()) {
+                        System.out.println("King");
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

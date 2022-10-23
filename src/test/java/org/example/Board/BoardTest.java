@@ -3,6 +3,8 @@ package org.example.Board;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.example.Symbols.Lowercase.LOWERCASE;
 
 class BoardTest {
@@ -25,11 +27,5 @@ class BoardTest {
     void cantMoveBecauseRookCantMoveLikeThat() {
         boolean actual = board.canMove(new int[][]{{7, 0}, {5, 2}}, LOWERCASE);
         Assertions.assertThat(actual).isFalse();
-    }
-
-    @Test
-    void canMoveBecauseRookCanMoveLikeThat() {
-        boolean actual = board.canMove(new int[][]{{7, 0}, {5, 0}}, LOWERCASE);
-        Assertions.assertThat(actual).isTrue();
     }
 }

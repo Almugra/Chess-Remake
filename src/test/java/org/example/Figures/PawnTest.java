@@ -28,51 +28,51 @@ class PawnTest {
 
     @Test
     void pawnCantMove3Up() {
-        board[6][0] = new Pawn(P, b);
+        board[6][0] = new Pawn(P);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
-        boolean actual = p.canMove(new int[]{6, 0}, new int[]{3, 0});
+        boolean actual = p.canMove(new int[]{6, 0}, new int[]{3, 0}, b);
 
         Assertions.assertThat(actual).isFalse();
     }
 
     @Test
     void pawnCantMoveDiagonalBecauseThereIsNoFigure() {
-        board[6][0] = new Pawn(P, b);
+        board[6][0] = new Pawn(P);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
-        boolean actual = p.canMove(new int[]{6, 0}, new int[]{5, 1});
+        boolean actual = p.canMove(new int[]{6, 0}, new int[]{5, 1},b);
 
         Assertions.assertThat(actual).isFalse();
     }
 
     @Test
     void pawnCanMoveDiagonalBecauseThereIsAFigure() {
-        board[6][0] = new Pawn(P, b);
-        board[5][1] = new Pawn(P, b);
+        board[6][0] = new Pawn(P);
+        board[5][1] = new Pawn(P);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
-        boolean actual = p.canMove(new int[]{6, 0}, new int[]{5, 1});
+        boolean actual = p.canMove(new int[]{6, 0}, new int[]{5, 1}, b);
 
         Assertions.assertThat(actual).isTrue();
     }
 
     @Test
     void pawnCantMoveTwoBecausePawnAlreadyMoved() {
-        board[5][0] = new Pawn(P, b);
+        board[5][0] = new Pawn(P);
         b.setBoard(board);
         Pawn p = (Pawn) board[5][0];
-        boolean actual = p.canMove(new int[]{5, 0}, new int[]{3, 0});
+        boolean actual = p.canMove(new int[]{5, 0}, new int[]{3, 0}, b);
 
         Assertions.assertThat(actual).isFalse();
     }
 
     @Test
     void pawnCanMoveTwoBecausePawnHasNotMovedBefore() {
-        board[6][0] = new Pawn(P, b);
+        board[6][0] = new Pawn(P);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
-        boolean actual = p.canMove(new int[]{6, 0}, new int[]{4, 0});
+        boolean actual = p.canMove(new int[]{6, 0}, new int[]{4, 0}, b);
 
         Assertions.assertThat(actual).isTrue();
     }

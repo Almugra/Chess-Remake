@@ -35,7 +35,7 @@ class BetweenTest {
     void rookCantMoveBecauseFigureIsBetween() {
         Object[][] board = b.getBoard();
         board[2][4] = new Rook(R);
-        board[4][4] = new Pawn(P, b);
+        board[4][4] = new Pawn(P);
         between = new Between(new int[]{2, 4}, new int[]{6, 4}, board);
 
         boolean actual = between.isFigureInBetween();
@@ -57,7 +57,7 @@ class BetweenTest {
     void rookCantMoveBecauseFigureIsBetweenNegative() {
         Object[][] board = b.getBoard();
         board[6][4] = new Rook(R);
-        board[4][4] = new Pawn(P, b);
+        board[4][4] = new Pawn(P);
         between = new Between(new int[]{6, 4}, new int[]{2, 4}, board);
 
         boolean actual = between.isFigureInBetween();
@@ -69,7 +69,7 @@ class BetweenTest {
     void rookCantMoveSidewaysBecauseFigureBlocksPath() {
         Object[][] board = b.getBoard();
         board[4][2] = new Rook(R);
-        board[4][4] = new Pawn(P, b);
+        board[4][4] = new Pawn(P);
         between = new Between(new int[]{4, 2}, new int[]{4, 6}, board);
 
         boolean actual = between.isFigureInBetween();
@@ -81,7 +81,7 @@ class BetweenTest {
     void bishopCantMoveBecauseFigureIsBetween() {
         Object[][] board = b.getBoard();
         board[4][2] = new Bishop(B);
-        board[6][4] = new Pawn(P, b);
+        board[6][4] = new Pawn(P);
         between = new Between(new int[]{4, 2}, new int[]{7, 5}, board);
 
         boolean actual = between.isFigureInBetween();
@@ -93,7 +93,7 @@ class BetweenTest {
     void bishopCantMoveBecauseFigureIsBetweenNegative() {
         Object[][] board = b.getBoard();
         board[4][2] = new Bishop(B);
-        board[2][4] = new Pawn(P,b);
+        board[2][4] = new Pawn(P);
         between = new Between(new int[]{4, 2}, new int[]{0, 6}, board);
 
         boolean actual = between.isFigureInBetween();
