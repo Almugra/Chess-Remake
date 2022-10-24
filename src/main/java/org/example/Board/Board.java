@@ -2,14 +2,20 @@ package org.example.Board;
 
 import org.example.Figures.*;
 import org.example.Input.Input;
+import org.example.Symbols.Lowercase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.example.Symbols.Lowercase.*;
 import static org.example.Symbols.Uppercase.*;
 
 public class Board {
 
+    public boolean isCheckmate = false;
+    int[] lowerCaseKingPos = {7, 4};
+    int[] upperCaseKingPos = {0, 4};
     private Object[][] board = {
             {new Rook(R), new Knight(N), new Bishop(B), new Queen(Q), new King(K), new Bishop(B), new Knight(N), new Rook(R)},
             {new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P), new Pawn(P)},
@@ -36,9 +42,6 @@ public class Board {
     public void setUpperCaseKingPos(int[] upperCaseKingPos) {
         this.upperCaseKingPos = upperCaseKingPos;
     }
-
-    int[] lowerCaseKingPos = {7, 4};
-    int[] upperCaseKingPos = {0, 4};
 
     public Object[][] getBoard() {
         return board;
@@ -88,16 +91,18 @@ public class Board {
             System.out.println("You can't move to that spot because there is a figure between!");
             return false;
         } else if (((Figure) board[from[0]][from[1]]).isKingCheck(from, to, this)) {
-            // can I move my Figure or does that get my King in checkmate// or is still in checkk?
-            // can any enemy figure directly attack my king
-            // if yes check if any of my figures can get to that spot or a spot inbetween to block
-
-            // if king cant move to any possible of his position because they are all targettet by an enemy and
-            // no ally figure can block or attack a position hes checkmate
             System.out.println("Cant move your figure because that puts your king in check!");
             return false;
         }
         return true;
+    }
+
+    public int[] getKingPosition(Object symbol) {
+        if (symbol.getClass() == Lowercase.class) {
+            return lowerCaseKingPos;
+        } else {
+            return upperCaseKingPos;
+        }
     }
 
     public void moveFigure(Object playerFigureType) {
@@ -117,6 +122,18 @@ public class Board {
         }
 //        setFigure(to, getFigure(from));
 //        removeFigure(from);
+    }
+
+    public List<List<Integer>> getListOfSymbolPositions(Object symbol) {
+        List<List<Integer>> poss = new ArrayList<>();
+        for (int y = 0; y <= 7; y++) {
+            for (int x = 0; x <= 7; x++) {
+                if (board[y][x] instanceof Figure && ((Figure) board[y][x]).getSymbol().getClass() == symbol.getClass()) {
+                    poss.add(Arrays.asList(y, x));
+                }
+            }
+        }
+        return poss;
     }
 
     public Figure getFigure(int[] coordinates) {

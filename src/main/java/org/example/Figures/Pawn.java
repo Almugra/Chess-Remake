@@ -5,8 +5,6 @@ import org.example.Board.Board;
 import org.example.Board.BoardBuilder;
 import org.example.Symbols.Lowercase;
 
-import java.util.Arrays;
-
 public class Pawn implements Figure {
 
     public Object symbol;
@@ -29,9 +27,21 @@ public class Pawn implements Figure {
         return symbol.toString();
     }
 
+    public boolean canMoveDirection(int[] start, int[] end) {
+        if (symbol.getClass() == Lowercase.class) {
+            return end[0] <= start[0];
+        } else {
+            return end[0] > start[0];
+        }
+    }
+
     @Override
     public boolean canMove(int[] startYX, int[] endYX, Board board) {
         Object[][] b = board.getBoard();
+        boolean outOfBound = endYX[0] > 7 || endYX[0] < 0 || endYX[1] > 7 || endYX[1] < 0;
+        if (outOfBound) {
+            return false;
+        }
         boolean moveTwoAfterMove = Math.abs(startYX[0] - endYX[0]) == 2
                                    && startYX[0] != 1
                                    && startYX[0] != 6;
@@ -40,7 +50,7 @@ public class Pawn implements Figure {
                                || Math.abs(startYX[0] - endYX[0]) == 1
                                   && Math.abs(startYX[1] - endYX[1]) == 1
                                   && b[endYX[0]][endYX[1]] != null;
-        return allowedMoves && !moveTwoAfterMove;
+        return allowedMoves && !moveTwoAfterMove && canMoveDirection(startYX, endYX);
     }
 
     @Override
