@@ -5,6 +5,7 @@ import org.example.Board.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.example.Symbols.Lowercase.p;
 import static org.example.Symbols.Uppercase.P;
 
 class PawnTest {
@@ -48,8 +49,8 @@ class PawnTest {
 
     @Test
     void pawnCanMoveDiagonalBecauseThereIsAFigure() {
-        board[6][0] = new Pawn(P);
-        board[5][1] = new Pawn(P);
+        board[6][0] = new Pawn(p);
+        board[5][1] = new Pawn(p);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
         boolean actual = p.canMove(new int[]{6, 0}, new int[]{5, 1}, b);
@@ -69,7 +70,7 @@ class PawnTest {
 
     @Test
     void pawnCanMoveTwoBecausePawnHasNotMovedBefore() {
-        board[6][0] = new Pawn(P);
+        board[6][0] = new Pawn(p);
         b.setBoard(board);
         Pawn p = (Pawn) board[6][0];
         boolean actual = p.canMove(new int[]{6, 0}, new int[]{4, 0}, b);

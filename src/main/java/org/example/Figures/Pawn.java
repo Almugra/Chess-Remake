@@ -1,16 +1,27 @@
 package org.example.Figures;
 
-import org.example.Board.Between;
 import org.example.Board.Board;
-import org.example.Board.BoardBuilder;
+import org.example.Board.Checkmate;
 import org.example.Symbols.Lowercase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pawn implements Figure {
 
     public Object symbol;
+    List<List<List<Integer>>> moveHistory = new ArrayList<>();
 
     public Pawn(Object symbol) {
         this.symbol = symbol;
+    }
+
+    public List<List<Integer>> getLastMove() {
+        return moveHistory.get(moveHistory.size() - 1);
+    }
+
+    public void addMoveToMoveHistory(List<List<Integer>> moveHistory) {
+        this.moveHistory.add(moveHistory);
     }
 
     public Object getSymbol() {
@@ -35,6 +46,33 @@ public class Pawn implements Figure {
         }
     }
 
+    public int getIncOrDec(int[] end) {
+        if (symbol.getClass() == Lowercase.class) {
+            return end[0] + 1;
+        } else {
+            return end[0] - 1;
+        }
+    }
+
+    public boolean canMoveEnPassant(int[] start, int[] end, Board board) {
+        Object[][] b = board.getBoard();
+        int incOrDec = getIncOrDec(end);
+        if (b[incOrDec][end[1]] instanceof Pawn
+            && b[start[0]][start[1]] instanceof Pawn
+            && ((Pawn) b[incOrDec][end[1]]).getSymbol() != symbol) {
+            Integer lastMoveStartY = ((Pawn) b[incOrDec][end[1]]).getLastMove().get(0).get(0);
+            Integer lastMoveEndY = ((Pawn) b[incOrDec][end[1]]).getLastMove().get(1).get(0);
+            boolean lastMoveIsTwoInY = Math.abs(lastMoveStartY - lastMoveEndY) == 2;
+            if (((Pawn) b[incOrDec][end[1]]).moveHistory.size() == 1
+                && lastMoveIsTwoInY) {
+                board.removeFigure(new int[]{incOrDec, end[1]});
+                return true;
+            }
+        }
+        System.out.println("En passant not possible!");
+        return false;
+    }
+
     @Override
     public boolean canMove(int[] startYX, int[] endYX, Board board) {
         Object[][] b = board.getBoard();
@@ -49,36 +87,18 @@ public class Pawn implements Figure {
                                && startYX[1] == endYX[1]
                                || Math.abs(startYX[0] - endYX[0]) == 1
                                   && Math.abs(startYX[1] - endYX[1]) == 1
-                                  && b[endYX[0]][endYX[1]] != null;
+                                  && (b[endYX[0]][endYX[1]] != null
+                                      || canMoveEnPassant(startYX, endYX, board));
         return allowedMoves && !moveTwoAfterMove && canMoveDirection(startYX, endYX);
     }
 
     @Override
     public boolean isKingCheck(int[] from, int[] to, Board board) {
-        int[] relevantKingPos;
-        if (symbol.getClass() == Lowercase.class) {
-            relevantKingPos = board.getLowerCaseKingPos();
-        } else {
-            relevantKingPos = board.getUpperCaseKingPos();
-        }
-        Between between;
-        Board newBoard = new Board();
-        BoardBuilder builder = new BoardBuilder(board);
-        newBoard.setBoard(board.getBoard());
-        newBoard.setFigure(to, this);
-        newBoard.removeFigure(from);
-        Object[][] b = newBoard.getBoard();
-        for (int y = 0; y <= 7; y++) {
-            for (int x = 0; x <= 7; x++) {
-                if (b[y][x] instanceof Figure && ((Figure) b[y][x]).getSymbol().getClass() != symbol.getClass()) {
-                    between = new Between(new int[]{y,x}, relevantKingPos, b);
-                    if (((Figure) b[y][x]).canMove(new int[]{y,x}, relevantKingPos, newBoard) && !between.isFigureInBetween()) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        board.setFigure(to, this);
+        board.removeFigure(from);
+        int[] relevantKingPosition = board.getKingPosition(symbol);
+        Checkmate checkmate = new Checkmate(relevantKingPosition, board);
+        return checkmate.getFigureTargetingKingPos(symbol) != null;
     }
 }
 

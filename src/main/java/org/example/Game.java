@@ -12,25 +12,24 @@ public class Game {
     BoardPrinter printer = new BoardPrinter(board, players);
     Checkmate checkmate;
 
-    public void playTurn() {
-        Player currentPlayer = players.getCurrentPlayer();
-        checkmate = new Checkmate(board.getKingPosition(currentPlayer.getSymbol()), board);
-        int[] figureTargetingKing = checkmate.getFigureTargetingKingPos(currentPlayer.getSymbol());
-        if (figureTargetingKing != null) {
-            boolean figureCanAttackEnemyFigure = checkmate.canFigureAttackEnemy(figureTargetingKing, currentPlayer.getSymbol());
-            boolean figureCanMoveBetweenAttackerAndKing = checkmate.canFigureMoveBetweenAttackerAndKing(currentPlayer.getSymbol(), figureTargetingKing);
-            if (!figureCanMoveBetweenAttackerAndKing && !figureCanAttackEnemyFigure) {
-                System.out.println("Checkmate!");
-            }
-        }
-        printer.printBoard();
-        board.moveFigure(currentPlayer.getSymbol());
-        players.changeToNextPlayer();
-    }
-
     public void playGame() {
-        while (!board.isCheckmate) {
-            playTurn();
+        while (true) {
+            Player currentPlayer = players.getCurrentPlayer();
+            checkmate = new Checkmate(board.getKingPosition(currentPlayer.getSymbol()), board);
+            int[] figureTargetingKing = checkmate.getFigureTargetingKingPos(currentPlayer.getSymbol());
+            if (figureTargetingKing != null) {
+                boolean figureCanAttackEnemyFigure = checkmate.canFigureAttackEnemy(figureTargetingKing, currentPlayer.getSymbol());
+                boolean figureCanMoveBetweenAttackerAndKing = checkmate.canFigureMoveBetweenAttackerAndKing(currentPlayer.getSymbol(), figureTargetingKing);
+                boolean canKingMoveToAnyPosition = checkmate.canKingMoveToAnyPosition();
+                if (!figureCanMoveBetweenAttackerAndKing && !figureCanAttackEnemyFigure && !canKingMoveToAnyPosition) {
+                    System.out.printf("%s is checkmate!\n", players.getCurrentPlayer().getName());
+                    System.out.printf("%s won!", players.peekOpponent().getName());
+                    break;
+                }
+            }
+            printer.printBoard();
+            board.moveFigure(currentPlayer.getSymbol());
+            players.changeToNextPlayer();
         }
     }
 }

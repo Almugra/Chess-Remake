@@ -5,6 +5,8 @@ import org.example.Figures.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.example.Symbols.Lowercase.*;
 import static org.example.Symbols.Uppercase.*;
 
@@ -125,27 +127,6 @@ class CheckTest {
     }
 
     @Test
-    void kingIsBlocked() {
-        Board board = new Board();
-        Checkmate checkmate = new Checkmate(new int[]{7, 4}, board);
-        boolean actual = checkmate.isBlocked();
-
-        Assertions.assertThat(actual).isTrue();
-
-    }
-
-    @Test
-    void kingIsNotBlocked() {
-        Board board = new Board();
-        Checkmate checkmate = new Checkmate(new int[]{7, 4}, board);
-        board.removeFigure(new int[]{6, 4});
-        boolean actual = checkmate.isBlocked();
-
-        Assertions.assertThat(actual).isFalse();
-
-    }
-
-    @Test
     void rookCanMoveBetweenAttackingFigureAndKingToStopCheck() {
         board[0][0] = new King(K);
         board[1][0] = new Rook(R);
@@ -209,6 +190,40 @@ class CheckTest {
     }
 
     @Test
+    void QueenCanCheckMateUpperCaseKing() {
+        Object[][] ba = b.getBoard();
+        ba[2][4] = new Pawn(P);
+        ba[1][4] = null;
+
+        ba[4][6] = new Pawn(p);
+        ba[5][5] = new Pawn(p);
+        ba[6][5] = null;
+        ba[6][6] = null;
+        b.setBoard(ba);
+        BoardBuilder builder = new BoardBuilder(b);
+        System.out.println(builder.buildLowerCaseBoard());
+        boolean actual = b.canMove(new int[][]{{0, 3}, {4, 7}}, UPPERCASE);
+        Assertions.assertThat(actual).isTrue();
+    }
+
+    @Test
+    void kingCantMoveToAnyPositionBecauseTheyAreAllBlocked() {
+        Checkmate checkmate = new Checkmate(new int[]{0, 4}, b);
+        boolean canKingMoveToAnyPosition = checkmate.canKingMoveToAnyPosition();
+
+        Assertions.assertThat(canKingMoveToAnyPosition).isFalse();
+    }
+
+    @Test
+    void kingCanMoveToAnyPositions() {
+        b.removeFigure(new int[]{1,4});
+        Checkmate checkmate = new Checkmate(new int[]{0, 4}, b);
+        boolean canKingMoveToAnyPosition = checkmate.canKingMoveToAnyPosition();
+
+        Assertions.assertThat(canKingMoveToAnyPosition).isTrue();
+    }
+
+    @Test
     void lowerCaseKingIsCheckMate() {
         board[7][7] = new Queen(Q);
         board[3][7] = new Rook(R);
@@ -231,5 +246,30 @@ class CheckTest {
                                        && !figureCanMoveBetweenAttackerAndKing
                                        && !figureCanAttackEnemyFigure;
         Assertions.assertThat(isLowerCaseKingCheck).isTrue();
+    }
+
+    @Test
+    void checkmateTest() {
+        Object[][] ba = b.getBoard();
+        ba[0][4] = null;
+        ba[1][4] = new King(K);
+        ba[3][4] = new Pawn(P);
+
+        ba[3][6] = new Queen(q);
+        ba[4][4] = new Pawn(p);
+        ba[6][4] = null;
+        ba[7][3] = null;
+        b.setBoard(ba);
+        BoardBuilder builder = new BoardBuilder(b);
+        System.out.println(builder.buildLowerCaseBoard());
+        Checkmate checkmate = new Checkmate(new int[]{1, 4}, b);
+        int[] figureTargetingKing = checkmate.getFigureTargetingKingPos(UPPERCASE);
+        boolean figureCanMoveBetweenAttackerAndKing = checkmate.canFigureMoveBetweenAttackerAndKing(UPPERCASE, figureTargetingKing);
+        boolean figureCanAttackEnemyFigure = checkmate.canFigureAttackEnemy(figureTargetingKing, UPPERCASE);
+        System.out.println(Arrays.toString(figureTargetingKing));
+        System.out.println(figureCanMoveBetweenAttackerAndKing);
+        System.out.println(figureCanAttackEnemyFigure);
+        boolean actual = b.canMove(new int[][]{{1, 4}, {0, 4}}, UPPERCASE);
+        Assertions.assertThat(actual).isTrue();
     }
 }

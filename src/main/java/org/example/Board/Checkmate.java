@@ -15,16 +15,7 @@ public class Checkmate {
         this.board = board;
     }
 
-    //boolean isKingCheckmate(int[] startYX, int[] endYX, Board board);
-    //enum with Draw, Checkmate, Check
-    //Is king blocked
-    //Is king targeted
-    // blocked && targeted == null -> NOTHING
-    // blocked && enemy horse points
-    // targeted != null && canBlockTarget || canMoveFigureToToTargetLocation-> CHECK
-    // targeted != null && !canBlockTarget  &&   -> CHECKMATE
-
-    public boolean isBlocked() {
+    public boolean canKingMoveToAnyPosition() {
         int y = kingPosition[0];
         int x = kingPosition[1];
         int[][] posAroundKing = {
@@ -40,18 +31,18 @@ public class Checkmate {
         for (int[] yx : posAroundKing) {
             boolean outOfBound = yx[0] < 0 || yx[0] > 7 || yx[1] < 0 || yx[1] > 7;
             if (!outOfBound && board.getBoard()[yx[0]][yx[1]] == null) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean canFigureMoveBetweenAttackerAndKing(Object playerSymbol, int[] figureTargetingKing) {
-        Object[][] b = board.getBoard();
+        Object[][] b = board.getBoard().clone();
         int[] kingPos = board.getKingPosition(playerSymbol);
         Between between = new Between(figureTargetingKing, kingPos, board.getBoard());
         List<List<Integer>> betweenPositions = between.getListOfPositionsBetween();
-        List<List<Integer>> symbolFigures = board.getListOfSymbolPositions(playerSymbol);
+        List<List<Integer>> symbolFigures = board.getFigureListFromSymbol(playerSymbol);
         for (List<Integer> betweenPosition : betweenPositions) {
             int u = betweenPosition.get(0);
             int v = betweenPosition.get(1);
@@ -81,7 +72,7 @@ public class Checkmate {
                     && ((Figure) b[y][x]).canMove(new int[]{y, x}, enemyFigure, board) && !between.isFigureInBetween()) {
                     if (b[y][x] instanceof King) {
                         Figure enemyFigureClass = (Figure) b[enemyFigure[0]][enemyFigure[1]];
-                        List<List<Integer>> listOfEnemyFigures = board.getListOfSymbolPositions(enemyFigureClass.getSymbol());
+                        List<List<Integer>> listOfEnemyFigures = board.getFigureListFromSymbol(enemyFigureClass.getSymbol());
                         for (List<Integer> figure : listOfEnemyFigures) {
                             int u = figure.get(0);
                             int v = figure.get(1);
@@ -101,14 +92,15 @@ public class Checkmate {
     }
 
     public int[] getFigureTargetingKingPos(Object playerSymbol) {
-        int[] kingPos = board.getKingPosition(playerSymbol);
+//        int[] kingPos = board.getKingPosition(playerSymbol);
         Object[][] b = board.getBoard();
         for (int y = 0; y <= 7; y++) {
             for (int x = 0; x <= 7; x++) {
-                Between between = new Between(new int[]{y, x}, kingPos, board.getBoard());
+                Between between = new Between(new int[]{y, x}, kingPosition, board.getBoard());
                 if (b[y][x] instanceof Figure
-                    && ((Figure) b[y][x]).canMove(new int[]{y, x}, kingPos, board)
-                    && !between.isFigureInBetween() && ((Figure) b[y][x]).getSymbol().getClass() != playerSymbol.getClass()) {
+                    && ((Figure) b[y][x]).getSymbol().getClass() != playerSymbol.getClass()
+                    && ((Figure) b[y][x]).canMove(new int[]{y, x}, kingPosition, board)
+                    && !between.isFigureInBetween()) {
                     return new int[]{y, x};
                 }
             }
