@@ -134,10 +134,11 @@ class CheckTest {
         board[7][0] = new King(k);
         b.setBoard(board);
         b.setLowerCaseKingPos(new int[]{7, 0});
-        Checkmate checkmate = new Checkmate(b.getKingPosition(LOWERCASE), b);
+        EndgameActions gameActions = new EndgameActions(b.getKingPosition(LOWERCASE), b);
 
-        int[] pos = checkmate.getFigureTargetingKingPos(LOWERCASE);
-        boolean actual = checkmate.canFigureMoveBetweenAttackerAndKing(LOWERCASE, pos);
+        int[] pos = gameActions.getFigureTargetingKingPos(LOWERCASE);
+        System.out.println(Arrays.toString(pos));
+        boolean actual = gameActions.canFigureMoveBetweenAttackerAndKing(LOWERCASE, pos);
 
         Assertions.assertThat(actual).isTrue();
     }
@@ -150,10 +151,10 @@ class CheckTest {
         board[7][0] = new King(k);
         b.setBoard(board);
         b.setLowerCaseKingPos(new int[]{7, 0});
-        Checkmate checkmate = new Checkmate(b.getLowerCaseKingPos(), b);
+        EndgameActions gameActions = new EndgameActions(b.getLowerCaseKingPos(), b);
 
-        int[] pos = checkmate.getFigureTargetingKingPos(LOWERCASE);
-        boolean actual = checkmate.canFigureMoveBetweenAttackerAndKing(LOWERCASE, pos);
+        int[] pos = gameActions.getFigureTargetingKingPos(LOWERCASE);
+        boolean actual = gameActions.canFigureMoveBetweenAttackerAndKing(LOWERCASE, pos);
 
         Assertions.assertThat(actual).isFalse();
     }
@@ -166,9 +167,9 @@ class CheckTest {
         board[7][0] = new King(k);
         b.setBoard(board);
         b.setLowerCaseKingPos(new int[]{7, 0});
-        Checkmate checkmate = new Checkmate(new int[]{7, 0}, b);
+        EndgameActions gameActions = new EndgameActions(new int[]{7, 0}, b);
 
-        int[] actual = checkmate.getFigureTargetingKingPos(LOWERCASE);
+        int[] actual = gameActions.getFigureTargetingKingPos(LOWERCASE);
 
         Assertions.assertThat(actual).isEqualTo(new int[]{1, 0});
     }
@@ -181,10 +182,10 @@ class CheckTest {
         board[7][0] = new King(k);
         b.setBoard(board);
         b.setLowerCaseKingPos(new int[]{7, 0});
-        Checkmate checkmate = new Checkmate(new int[]{7, 0}, b);
+        EndgameActions gameActions = new EndgameActions(new int[]{7, 0}, b);
 
-        int[] enemyTargetingMyKingPosition = checkmate.getFigureTargetingKingPos(LOWERCASE);
-        boolean actual = checkmate.canFigureAttackEnemy(enemyTargetingMyKingPosition, LOWERCASE);
+        int[] enemyTargetingMyKingPosition = gameActions.getFigureTargetingKingPos(LOWERCASE);
+        boolean actual = gameActions.canFigureAttackEnemy(enemyTargetingMyKingPosition, LOWERCASE);
 
         Assertions.assertThat(actual).isTrue();
     }
@@ -202,14 +203,14 @@ class CheckTest {
         b.setBoard(ba);
         BoardBuilder builder = new BoardBuilder(b);
         System.out.println(builder.buildLowerCaseBoard());
-        boolean actual = b.canMove(new int[][]{{0, 3}, {4, 7}}, UPPERCASE);
+        boolean actual = b.isMoveLegal(new int[][]{{0, 3}, {4, 7}}, UPPERCASE);
         Assertions.assertThat(actual).isTrue();
     }
 
     @Test
     void kingCantMoveToAnyPositionBecauseTheyAreAllBlocked() {
-        Checkmate checkmate = new Checkmate(new int[]{0, 4}, b);
-        boolean canKingMoveToAnyPosition = checkmate.canKingMoveToAnyPosition();
+        EndgameActions gameActions = new EndgameActions(new int[]{0, 4}, b);
+        boolean canKingMoveToAnyPosition = gameActions.canKingMoveToAnyPosition();
 
         Assertions.assertThat(canKingMoveToAnyPosition).isFalse();
     }
@@ -217,8 +218,8 @@ class CheckTest {
     @Test
     void kingCanMoveToAnyPositions() {
         b.removeFigure(new int[]{1,4});
-        Checkmate checkmate = new Checkmate(new int[]{0, 4}, b);
-        boolean canKingMoveToAnyPosition = checkmate.canKingMoveToAnyPosition();
+        EndgameActions gameActions = new EndgameActions(new int[]{0, 4}, b);
+        boolean canKingMoveToAnyPosition = gameActions.canKingMoveToAnyPosition();
 
         Assertions.assertThat(canKingMoveToAnyPosition).isTrue();
     }
@@ -235,11 +236,11 @@ class CheckTest {
         b.setBoard(board);
         b.setLowerCaseKingPos(new int[]{7, 6});
         b.setUpperCaseKingPos(new int[]{0, 4});
-        Checkmate checkmate = new Checkmate(b.getKingPosition(LOWERCASE), b);
+        EndgameActions gameActions = new EndgameActions(b.getKingPosition(LOWERCASE), b);
 
-        int[] figureTargetingKing = checkmate.getFigureTargetingKingPos(LOWERCASE);
-        boolean figureCanAttackEnemyFigure = checkmate.canFigureAttackEnemy(figureTargetingKing, LOWERCASE);
-        boolean figureCanMoveBetweenAttackerAndKing = checkmate.canFigureMoveBetweenAttackerAndKing(LOWERCASE, figureTargetingKing);
+        int[] figureTargetingKing = gameActions.getFigureTargetingKingPos(LOWERCASE);
+        boolean figureCanAttackEnemyFigure = gameActions.canFigureAttackEnemy(figureTargetingKing, LOWERCASE);
+        boolean figureCanMoveBetweenAttackerAndKing = gameActions.canFigureMoveBetweenAttackerAndKing(LOWERCASE, figureTargetingKing);
         System.out.println(figureCanAttackEnemyFigure);
         System.out.println(figureCanMoveBetweenAttackerAndKing);
         boolean isLowerCaseKingCheck = figureTargetingKing != null
@@ -262,14 +263,14 @@ class CheckTest {
         b.setBoard(ba);
         BoardBuilder builder = new BoardBuilder(b);
         System.out.println(builder.buildLowerCaseBoard());
-        Checkmate checkmate = new Checkmate(new int[]{1, 4}, b);
-        int[] figureTargetingKing = checkmate.getFigureTargetingKingPos(UPPERCASE);
-        boolean figureCanMoveBetweenAttackerAndKing = checkmate.canFigureMoveBetweenAttackerAndKing(UPPERCASE, figureTargetingKing);
-        boolean figureCanAttackEnemyFigure = checkmate.canFigureAttackEnemy(figureTargetingKing, UPPERCASE);
+        EndgameActions gameActions = new EndgameActions(new int[]{1, 4}, b);
+        int[] figureTargetingKing = gameActions.getFigureTargetingKingPos(UPPERCASE);
+        boolean figureCanMoveBetweenAttackerAndKing = gameActions.canFigureMoveBetweenAttackerAndKing(UPPERCASE, figureTargetingKing);
+        boolean figureCanAttackEnemyFigure = gameActions.canFigureAttackEnemy(figureTargetingKing, UPPERCASE);
         System.out.println(Arrays.toString(figureTargetingKing));
         System.out.println(figureCanMoveBetweenAttackerAndKing);
         System.out.println(figureCanAttackEnemyFigure);
-        boolean actual = b.canMove(new int[][]{{1, 4}, {0, 4}}, UPPERCASE);
+        boolean actual = b.isMoveLegal(new int[][]{{1, 4}, {0, 4}}, UPPERCASE);
         Assertions.assertThat(actual).isTrue();
     }
 }

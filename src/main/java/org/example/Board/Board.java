@@ -80,14 +80,16 @@ public class Board {
         return new Queen(symbol);
     }
 
-    public boolean canMove(int[][] fromPosToPos, Object playerFigureType) {
-        int[] from = fromPosToPos[0];
-        int[] to = fromPosToPos[1];
+    public boolean isMoveLegal(int[][] fromTo, Object playerFigureType) {
+        int[] from = fromTo[0];
+        int[] to = fromTo[1];
         Between between = new Between(from, to, board);
         boolean movesNull = board[from[0]][from[1]] == null;
-        boolean movesEnemyFigure = board[from[0]][from[1]] != null && matchSymbol(board[from[0]][from[1]]).getClass() != playerFigureType.getClass();
-        boolean moresToAlreadyOwnedSpot = board[from[0]][from[1]] != null && matchSymbol(board[to[0]][to[1]]).getClass() == playerFigureType.getClass();
-        Board board1 = new Board(getLowerCaseKingPos(), getUpperCaseKingPos(), cloneBoard());
+        boolean movesEnemyFigure = board[from[0]][from[1]] != null
+                                   && matchSymbol(board[from[0]][from[1]]).getClass() != playerFigureType.getClass();
+        boolean moresToAlreadyOwnedSpot = board[from[0]][from[1]] != null
+                                          && matchSymbol(board[to[0]][to[1]]).getClass() == playerFigureType.getClass();
+        Board brd = new Board(getLowerCaseKingPos(), getUpperCaseKingPos(), cloneBoard());
         if (movesNull) {
             System.out.println("Can't move empty position!");
             return false;
@@ -103,7 +105,7 @@ public class Board {
         } else if (!(board[from[0]][from[1]] instanceof Knight) && between.isFigureInBetween()) {
             System.out.println("You can't move to that spot because there is a figure between!");
             return false;
-        } else if (((Figure) board[from[0]][from[1]]).isKingCheck(from, to, board1)) {
+        } else if (((Figure) board[from[0]][from[1]]).isKingCheck(from, to, brd)) {
             System.out.println("You can't move this figure because that puts your king in check!");
             return false;
         }
@@ -123,9 +125,23 @@ public class Board {
         int[][] fromTo;
         do {
             fromTo = input.requestInputs();
-        } while (!canMove(fromTo, playerFigureType));
+        } while (!isMoveLegal(fromTo, playerFigureType));
         int[] from = fromTo[0];
         int[] to = fromTo[1];
+        correctKingPositions(from, to);
+        addLastPawnMoveToPawnHistory(from, to);
+        setFigure(to, getFigure(from));
+        removeFigure(from);
+    }
+
+    private void addLastPawnMoveToPawnHistory(int[] from, int[] to) {
+        if (board[from[0]][from[1]] instanceof Pawn) {
+            ((Pawn) board[from[0]][from[1]])
+                    .addMoveToMoveHistory(asList(asList(from[0], from[1]), asList(to[0], to[1])));
+        }
+    }
+
+    private void correctKingPositions(int[] from, int[] to) {
         if (board[from[0]][from[1]] instanceof King) {
             if (((King) board[from[0]][from[1]]).isLowercase()) {
                 lowerCaseKingPos = to;
@@ -133,12 +149,6 @@ public class Board {
                 upperCaseKingPos = to;
             }
         }
-        if (board[from[0]][from[1]] instanceof Pawn) {
-            ((Pawn) board[from[0]][from[1]])
-                    .addMoveToMoveHistory(asList(asList(from[0], from[1]), asList(to[0], to[1])));
-        }
-        setFigure(to, getFigure(from));
-        removeFigure(from);
     }
 
     public List<List<Integer>> getFigureListFromSymbol(Object symbol) {

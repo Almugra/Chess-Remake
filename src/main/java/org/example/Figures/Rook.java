@@ -1,7 +1,7 @@
 package org.example.Figures;
 
 import org.example.Board.Board;
-import org.example.Board.Checkmate;
+import org.example.Board.EndgameActions;
 import org.example.Symbols.Lowercase;
 
 public class Rook implements Figure {
@@ -37,7 +37,7 @@ public class Rook implements Figure {
         board.setFigure(to, this);
         board.removeFigure(from);
         int[] relevantKingPosition = board.getKingPosition(symbol);
-        Checkmate checkmate = new Checkmate(relevantKingPosition, board);
-        return checkmate.getFigureTargetingKingPos(symbol) != null;
+        EndgameActions gameActions = new EndgameActions(relevantKingPosition, board);
+        return gameActions.getFigureTargetingKingPos(symbol) != null;
     }
 }
