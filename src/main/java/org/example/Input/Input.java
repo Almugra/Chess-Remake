@@ -9,7 +9,7 @@ public class Input extends InputParser {
         Scanner scn = new Scanner(System.in);
         return inputToCoordinates(scn.next());
     }
-    
+
     public boolean outOfBound(int[] coordinates) {
         return coordinates[0] > 7 || coordinates[0] < 0 || coordinates[1] > 7 || coordinates[1] < 0;
     }
@@ -18,9 +18,9 @@ public class Input extends InputParser {
         int[] start;
         int[] end;
         while (true) {
-            System.out.print("From(YX): ");
+            System.out.print("From(XY): ");
             start = requestInput();
-            System.out.print("To(YX): ");
+            System.out.print("To(XY): ");
             end = requestInput();
             if (Arrays.equals(start, end)) {
                 System.out.println("Can't move to the same position!");

@@ -4,7 +4,7 @@ public class InputParser {
 
     public int[] inputToCoordinates(String input) {
         char[] yx = input.toCharArray();
-        return new int[]{charToInt(yx[0]), charToInt(yx[1])};
+        return new int[]{charToInt(yx[1]), charToInt(yx[0])};
     }
 
     public int charToInt(char c) {
